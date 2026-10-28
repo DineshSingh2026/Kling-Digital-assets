@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Colours are RGB channels so Tailwind opacity modifiers work (e.g. bg-accent/10).
+   Three themes, switched with <html data-theme="…">: blue (default), orange, emerald.
+   accent-2 / accent-3 are the supporting hues used inside the illustrations.
+   accent-strong is the button fill and on-accent its text colour (both kept at 4.5:1 or better). */
+:root {
+  --bg: 11 15 23;
+  --bg-elevated: 17 24 39;
+  --bg-deep: 7 11 22;
+  --surface: 17 26 43;
+  --fg: 245 247 250;
+  --fg-muted: 154 164 178;
+  --accent: 59 130 246;
+  --accent-hover: 96 165 250;
+  --accent-soft: 147 197 253;
+  --accent-pale: 191 219 254;
+  --accent-deep: 30 58 138;
+  --accent-strong: 37 99 235;
+  --accent-strong-hover: 29 78 216;
+  --on-accent: 255 255 255;
+  --accent-2: 34 211 238;
+  --accent-2-soft: 103 232 249;
+  --accent-3: 129 140 248;
+  --accent-3-soft: 165 180 252;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --nav-height: 72px;
+  color-scheme: dark;
+}
+
+/* Sunset Orange: warm graphite with the logo's orange and gold. */
+:root[data-theme='orange'] {
+  --bg: 13 10 8;
+  --bg-elevated: 26 19 14;
+  --bg-deep: 8 6 5;
+  --surface: 32 23 16;
+  --fg: 250 247 242;
+  --fg-muted: 170 160 148;
+  --accent: 249 115 22;
+  --accent-hover: 251 146 60;
+  --accent-soft: 253 186 116;
+  --accent-pale: 254 215 170;
+  --accent-deep: 124 45 18;
+  --accent-strong: 249 115 22;
+  --accent-strong-hover: 251 146 60;
+  --on-accent: 20 12 5;
+  --accent-2: 251 191 36;
+  --accent-2-soft: 253 224 71;
+  --accent-3: 251 113 133;
+  --accent-3-soft: 253 164 175;
+}
+
+/* Emerald: deep green with the logo's gold as the supporting hue. */
+:root[data-theme='emerald'] {
+  --bg: 6 13 11;
+  --bg-elevated: 12 24 20;
+  --bg-deep: 4 9 8;
+  --surface: 15 31 26;
+  --fg: 244 248 246;
+  --fg-muted: 150 170 162;
+  --accent: 16 185 129;
+  --accent-hover: 52 211 153;
+  --accent-soft: 110 231 183;
+  --accent-pale: 167 243 208;
+  --accent-deep: 6 78 59;
+  --accent-strong: 16 185 129;
+  --accent-strong-hover: 52 211 153;
+  --on-accent: 3 18 13;
+  --accent-2: 45 212 191;
+  --accent-2-soft: 94 234 212;
+  --accent-3: 250 204 21;
+  --accent-3-soft: 253 230 138;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg font-sans text-base leading-[1.6] text-fg antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold tracking-heading text-fg;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+    color: rgb(var(--fg));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent-hover));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
